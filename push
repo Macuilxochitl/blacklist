@@ -1,0 +1,3 @@
+#!/bin/sh
+git push bl master
+git push github master

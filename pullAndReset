@@ -1,0 +1,3 @@
+#!/bin/sh
+git pull bl
+git reset --hard bl/master
