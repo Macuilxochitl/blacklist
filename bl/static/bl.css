@@ -1,0 +1,13 @@
+.hide{
+	display: none;
+}
+.center{
+	text-align: center;
+}
+.full{
+	height: 100%;
+}
+
+html,body{
+	height: 100%;
+}
