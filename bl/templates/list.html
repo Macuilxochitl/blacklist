@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>公司名</th>
+      <th>备注</th>
+      <th>状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="warning">
+      <td>深圳aa公司</td>
+      <td>在xx日被xx提交为培训机构，管理员正在确认是否培训机构</td>
+      <td>待确认</td></tr>
+    <tr class="warning">
+      <td>深圳bb公司</td>
+      <td>在xx日被xx提交为培训机构，管理员正在确认是否培训机构</td>
+      <td>待确认</td></tr>
+    <tr class="danger">
+      <td>深圳xx公司</td>
+      <td>在xx日被xx提交为培训机构，管理员已确认是培训机构</td>
+      <td>已确认</td></tr>
+  </tbody>
+</table>
+{% endblock %}
