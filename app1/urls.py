@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^list/$', bl.list),
     url(r'^submit/$', bl.submit),
     url(r'^contact/$', bl.contact),
-
+    url(r'^handle/$', bl.handle),
+    url(r'^companyList/$', bl.companyJson),
+    
 ]

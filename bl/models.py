@@ -10,4 +10,4 @@ class company(models.Model):
 	isTrain=models.BooleanField(default=False)
 
 	def __str__(self):
-		return "id="+str(self.id)+",name="+self.name+",isTrain="+self.isTrain
+		return "id="+str(self.id)+",name="+self.name+",isTrain="+str(self.isTrain)

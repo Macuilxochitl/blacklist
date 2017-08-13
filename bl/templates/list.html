@@ -9,27 +9,53 @@
           <p class="lead">如果你在应聘时也遇到培训机构,你可以点击上面的'提交公司'来提交.</p>
       </div>
 </div>
+<div id="list">
 <table class="table">
   <thead>
     <tr>
       <th>公司名</th>
+      <th>提交时间</th>
       <th>备注</th>
       <th>状态</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="warning">
-      <td>深圳aa公司</td>
-      <td>在xx日被xx提交为培训机构，管理员正在确认是否培训机构</td>
-      <td>待确认</td></tr>
-    <tr class="warning">
-      <td>深圳bb公司</td>
-      <td>在xx日被xx提交为培训机构，管理员正在确认是否培训机构</td>
-      <td>待确认</td></tr>
-    <tr class="danger">
-      <td>深圳xx公司</td>
-      <td>在xx日被xx提交为培训机构，管理员已确认是培训机构</td>
-      <td>已确认</td></tr>
+    
+
+
+    {% verbatim %}
+
+      <tr v-bind:class="[{'warning':company.isTrain==false},{'danger':company.isTrain==true}]" v-for="company in companyList">
+      <td>{{ company.name }}</td>
+      <td>{{ new Date(company.createTime).toLocaleString() }}</td>
+      <td>{{ company.note }}</td>
+      <td>{{ company.isTrain==true ? '已确认' : '未确认' }}</td></tr>
+    {% endverbatim %}
+    
   </tbody>
 </table>
+</div>
+{% endblock %}
+
+{% block extra %}
+<script>
+
+  var listVue=new Vue({
+    el:"#list",
+    data:{
+      companyList:null,
+      companyList1:[{a:"1"}],
+    },
+    mounted:function() {
+
+    }
+  });
+
+  function load(){
+  axios.get('/companyList/').then(function(response){
+  listVue.companyList=response.data["companyList"];
+  });
+}
+  load();
+</script>
 {% endblock %}

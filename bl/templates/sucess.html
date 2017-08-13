@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p class="col-md-offset-1">提交成功！你的提交已显示在黑名单中，在管理员审核确认后会优先于未审核的显示。</p>
+{% endblock %}
+
+{% block extra %}
+<script>
+  var l=document.getElementById("nav-list");
+  l.setAttribute("class","");
+</script>
+{% endblock %}
