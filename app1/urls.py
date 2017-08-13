@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^contact/$', bl.contact),
     url(r'^handle/$', bl.handle),
     url(r'^companyList/$', bl.companyJson),
-    
+    url(r'^mianze/$', bl.mianze),
 ]

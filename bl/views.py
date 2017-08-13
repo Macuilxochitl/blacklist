@@ -5,6 +5,8 @@ from django.http import JsonResponse
 
 def list(request):
 	return render(request,"list.html")
+def mianze(request):
+	return render(request,"mianze.html")
 
 def submit(request):
 	return render(request,"submit.html")
