@@ -1,6 +1,9 @@
 .hide{
 	display: none;
 }
+.default{
+	display: inline;
+}
 .center{
 	text-align: center;
 }
