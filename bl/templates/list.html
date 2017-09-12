@@ -9,7 +9,10 @@
           <p class="lead">如果你在应聘时也遇到培训机构,你可以点击上面的'提交公司'来提交.</p>
       </div>
 </div>
+
+
 <div id="list">
+<div v-bind:class="{hide:isNotOK}">
 <table class="table table-striped table-responsive">
   <thead>
     <tr>
@@ -19,8 +22,6 @@
     </tr>
   </thead>
   <tbody>
-    
-
 
     {% verbatim %}
 
@@ -28,11 +29,12 @@
       <td>{{ company.name }}</td>
       <td>{{ new Date(company.createTime).toLocaleString() }}</td>
       <td>{{ company.note }}</td>
-
+      </tr>
     {% endverbatim %}
     
   </tbody>
 </table>
+</div>
 </div>
 {% endblock %}
 
@@ -44,6 +46,7 @@
     data:{
       companyList:null,
       companyList1:[{a:"1"}],
+      isNotOK:true
     },
     mounted:function() {
 
@@ -53,6 +56,7 @@
   function load(){
   axios.get('/companyList/').then(function(response){
   listVue.companyList=response.data["companyList"];
+  listVue.isNotOK=false;
   });
 }
   load();
