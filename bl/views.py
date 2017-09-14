@@ -34,6 +34,8 @@ def handle(request):
 		mode=p['mode']
 		companyName=p['name']
 		companyNote=p['note']
+		if companyNote=="":
+			companyNote="无备注或收集自网络"
 	except:
 		print("fail")
 		return render(request,"fail.html")
