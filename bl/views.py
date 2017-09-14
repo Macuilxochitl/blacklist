@@ -34,12 +34,13 @@ def handle(request):
 		mode=p['mode']
 		companyName=p['name']
 		companyNote=p['note']
+		code=p['code']
 		if companyNote=="":
 			companyNote="无备注或收集自网络"
 	except:
 		print("fail")
 		return render(request,"fail.html")
-	if companyName=="" or companyNote=="":
+	if companyName=="" or companyNote=="" or code!="50":
 		print("empty data")
 		return render(request,"fail.html")
 	print("get data,"+mode+","+companyName+","+companyNote+"")
