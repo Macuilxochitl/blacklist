@@ -11,3 +11,8 @@ class company(models.Model):
 
 	def __str__(self):
 		return "id="+str(self.id)+",name="+self.name+",isTrain="+str(self.isTrain)
+
+class code(models.Model):
+	submitCode=models.CharField(max_length=60)
+	adminCode=models.CharField(max_length=60)
+	id=models.AutoField("ID",primary_key=True)
