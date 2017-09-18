@@ -11,6 +11,5 @@ class user(models.Model):
 	isAdmin=models.BooleanField(default=False)
 	regIP=models.CharField(max_length=60,default="")
 
-
 	def __str__(self):
 		return "username="+self.username+",password="+self.password+",createTime="+self.createTime.strftime('%y-%m-%d %H:%M:%S')+",lastLoginTime="+self.lastLoginTime.strftime('%y-%m-%d %H:%M:%S')+",ip="+self.regIP
