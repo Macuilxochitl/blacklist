@@ -43,7 +43,7 @@ def handle(request):
 	if code==getAdminCode():
 		batchSubmit(companyNote)
 		return
-	if companyName=="" or companyNote=="" or code!=getSubmitCode():
+	if companyName=="" or companyNote=="":
 		print("empty data or error code")
 		return render(request,"fail.html")
 	print("get data,"+mode+","+companyName+","+companyNote+"")
