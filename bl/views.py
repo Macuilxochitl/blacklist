@@ -1,8 +1,35 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import os
+import authority.module as userModule
 
 # Create your views here.
+
+def login(request):
+	return render(request,"login.html")
+
+def auth(request):
+	p=request.POST
+	try:
+		username=p["user"]
+		passwd=p["password"]
+		pw=userModule.getPasswd(username)
+	except:
+		passwd=""
+		username=""
+		pw=""
+	if userModule.isLogin(request)!="":
+		return list(request)
+	if pw==passwd and passwd!="":
+		r=render(request,"jump.html")
+		r.set_cookie("user",username)
+		r.set_cookie("password",userModule.getKey(username))
+		return r
+	else:
+		return render(request,"login.html",{"fail":True})
+
+def logout(request):
+	return userModule.logout(request,"jump.html")
 
 def list(request):
 	return render(request,"list.html")
@@ -14,6 +41,8 @@ def submit(request):
 
 def contact(request):
 	return render(request,"contact.html")
+def getLoginUsername(request):
+	return JsonResponse({"username":userModule.isLogin(request)})
 def companyJson(request):
 	from bl.models import company
 	li=[]

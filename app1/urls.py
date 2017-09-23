@@ -23,5 +23,9 @@ urlpatterns = [
     url(r'^contact/$', bl.contact),
     url(r'^handle/$', bl.handle),
     url(r'^companyList/$', bl.companyJson),
+    url(r'^auth/$', bl.getLoginUsername),
     url(r'^mianze/$', bl.mianze),
+    url(r'^login/$', bl.login),
+    url(r'^login/auth/$', bl.auth),
+    url(r'^logout/$', bl.logout),
 ]

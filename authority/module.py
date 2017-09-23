@@ -1,4 +1,5 @@
 import hashlib
+from django.shortcuts import render
 from authority.models import user as u
 def addUser(un,pw,ip=""):
 	
@@ -25,7 +26,6 @@ def changePassword(user,newpwd):
 	obj.save()
 
 def getPasswd(un):
-	from Blog.models import user as u
 	try:
 		
 		obj=u.objects.get(username=un)

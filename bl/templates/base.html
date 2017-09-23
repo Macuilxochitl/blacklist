@@ -14,11 +14,13 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/vue.min.js"></script>
 <script src="/static/js/axios.min.js"></script>
+{% block head %}
+{% endblock %}
 <title>培训机构名单</title>
 </head>
 <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav id="head" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,6 +36,10 @@
             <li id="nav-list" class="active"><a href="/list/">名单</a></li>
             <li id="nav-submit"><a href="/submit/">提交公司</a></li>
             <li id="nav-contact"><a href="/contact/">联系我们</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a v-bind:href="userLink" v-html="username"></a></li>
+            <li><a v-bind:href="regLink" v-html="register">注册</a></li>
           </ul>
         </div>
       </div>
@@ -55,6 +61,29 @@
 
 <p class="hide"><script src="https://s22.cnzz.com/z_stat.php?id=1262843688&web_id=1262843688" language="JavaScript"></script></p>
 </footer>
+<script>
+  var headVue=new Vue({
+    el:"#head",
+    data:{
+      username:"登录",
+      userLink:"/login/",
+      register:"注册",
+      regLink:"https://yitu.yt/register/"
+    },
+  });
+  function getUsername(){
+    axios.get('/auth/').then(function(response){
+    var un=response.data["username"];
+    if(un!=""){
+      headVue.username=un;
+      headVue.userLink="/";
+      headVue.register="注销";
+      headVue.regLink="/logout/";
+    }
+  });
+}
+  getUsername();
+</script>
 {% block extra %}
 {% endblock %}
 {% csrf_token %}
