@@ -42,6 +42,7 @@ def submit(request):
 def contact(request):
 	return render(request,"contact.html")
 def getLoginUsername(request):
+	print(request.COOKIES)
 	return JsonResponse({"username":userModule.isLogin(request)})
 def companyJson(request):
 	from bl.models import company

@@ -66,9 +66,9 @@
     el:"#head",
     data:{
       username:"登录",
-      userLink:"/login/",
+      userLink:"https://user.yitu.yt/?returnurl=https://blacklist.yitu.yt",
       register:"注册",
-      regLink:"https://yitu.yt/register/"
+      regLink:"https://user.yitu.yt/register/"
     },
   });
   function getUsername(){
@@ -78,7 +78,7 @@
       headVue.username=un;
       headVue.userLink="/";
       headVue.register="注销";
-      headVue.regLink="/logout/";
+      headVue.regLink="https://user.yitu.yt/logout/?returnurl=https://blacklist.yitu.yt";
     }
   });
 }

@@ -1,10 +1,11 @@
 import hashlib
-from django.shortcuts import render
 from authority.models import user as u
-def addUser(un,pw,ip=""):
+import random
+from django.shortcuts import render
+def addUser(un,pw,em,ip=""):
 	
 	
-	obj=u(username=un,password=pw,regIP=ip)
+	obj=u(username=un,password=pw,email=em,regIP=ip,actCode=random.randint(10000000,99999999))
 	obj.save()
 	
 def delUser(un):
@@ -15,6 +16,13 @@ def delUser(un):
 	except:
 		return False
 	return True
+
+def isExist(un):
+	try:
+		obj=u.objects.get(username=un)
+		return True
+	except:
+		return False
 
 def getUserList():
 	return u.objects.all()
@@ -69,16 +77,32 @@ def auth(username,passwd):
 	else:
 		return False
 
-def setCookie(request,username,jumpTo):
-	r=render(request,jumpTo)
-	r.set_cookie("user",username)
-	r.set_cookie("password",getKey(username))
+def setCookie(request,username,jumpTo,domain=""):
+	url={"url":jumpTo}
+
+	r=render(request,"jump.html",url)
+	if jumpTo=="":
+		jumpTo="/"
+	
+	if domain=="":
+		r.set_cookie("user",username)
+		r.set_cookie("password",getKey(username))
+	else:
+		r.set_cookie("user",username,domain=domain)
+		r.set_cookie("password",getKey(username),domain=domain)
 	return r
 
-def logout(request,jumpTo):
-	r=render(request,jumpTo)
-	r.set_cookie("user","")
-	r.set_cookie("password","")
+def logout(request,jumpTo,domain=""):
+	url={"url":jumpTo}
+	r=render(request,"jump.html",url)
+	if jumpTo=="":
+		jumpTo="/"
+	if domain=="":
+		r.set_cookie("user","")
+		r.set_cookie("password","")
+	else:
+		r.set_cookie("user","",domain=domain)
+		r.set_cookie("password","",domain=domain)
 	return r
 
 def getKey(username):
